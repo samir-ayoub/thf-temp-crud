@@ -7,7 +7,6 @@ import { ThfModule } from '@totvs/thf-ui';
 
 import { ClientsComponent } from './clients.component';
 import { ClientsService } from './services/clients.service';
-import { NewClientComponent } from './new-client/new-client.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { EditClientComponent } from './edit-client/edit-client.component';
@@ -24,9 +23,7 @@ import { EditClientComponent } from './edit-client/edit-client.component';
   ],
   declarations: [
     ClientsComponent,
-    NewClientComponent,
-    EditClientComponent,
-
+    EditClientComponent
   ],
   exports: [
     ClientsComponent
