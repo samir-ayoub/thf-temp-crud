@@ -30,9 +30,9 @@ export class ClientsComponent implements OnInit {
 
   public readonly actions: Array<ThfPageAction> = [
     { label: 'Adicionar Novo Cliente', action: () => this.router.navigate(['/new-client']), icon: 'thf-icon-plus' },
-    { label: 'Imprimir', action: this.printPage },
-    { label: 'acao', action: this.printPage },
-    { label: 'acao2', action: this.printPage }
+    { label: 'Imprimir', action: () => alert('Ação Imprimir')},
+    { label: 'acao', action: () => alert('Ação 1')},
+    { label: 'acao2', action: () => alert('Ação 2') }
   ];
 
   public readonly breadcrumb: ThfBreadcrumb = {
@@ -60,39 +60,15 @@ export class ClientsComponent implements OnInit {
     };
   }
 
-  editCustomer(customer: Customer) {
-    this.router.navigate(['/edit', customer.id]);
-  }
-
-  getClients() {
-    this.clientsService.getClients().subscribe(response => {
-      this.items = response;
-      this.itemsFiltered = [...this.items];
+  applyFilters(filters) {
+    this.itemsFiltered = this.items.filter(item => {
+      return Object.keys(item)
+      .some(key => (!(item[key] instanceof Object) && this.includeFilter(item[key], filters)));
     });
   }
 
-  printPage() {
-    alert('Imprimir');
-  }
-
-  onChangeDisclaimer(disclaimers) {
-    this.disclaimers = disclaimers;
-    this.filter();
-  }
-
-  filterAction() {
-    this.populateDisclaimers([this.labelFilter]);
-    this.filter();
-  }
-
-  populateDisclaimers(filters: Array<any>) {
-    this.disclaimers = filters.map(value => ({ value }));
-
-    if (this.disclaimers && this.disclaimers.length > 0) {
-      this.disclaimerGroup.disclaimers = [...this.disclaimers];
-    } else {
-      this.disclaimerGroup.disclaimers = [];
-    }
+  editCustomer(customer: Customer) {
+    this.router.navigate(['/edit', customer.id]);
   }
 
   filter() {
@@ -104,17 +80,37 @@ export class ClientsComponent implements OnInit {
       }
     }
   }
+ 
+  filterAction() {
+    this.populateDisclaimers([this.labelFilter]);
+    this.filter();
+  } 
 
-  applyFilters(filters) {
-    this.itemsFiltered = this.items.filter(item => {
-      return Object.keys(item)
-      .some(key => (!(item[key] instanceof Object) && this.includeFilter(item[key], filters)));
+  getClients() {
+    this.clientsService.getClients().subscribe(response => {
+      this.items = response;
+      this.itemsFiltered = [...this.items];
     });
   }
 
   includeFilter(item, filters) {
     const result = filters.some(filter => String(item).toLocaleLowerCase().includes(filter.toLocaleLowerCase()));
     return result;
+  }
+
+  onChangeDisclaimer(disclaimers) {
+    this.disclaimers = disclaimers;
+    this.filter();
+  }
+
+  populateDisclaimers(filters: Array<any>) {
+    this.disclaimers = filters.map(value => ({ value }));
+
+    if (this.disclaimers && this.disclaimers.length > 0) {
+      this.disclaimerGroup.disclaimers = [...this.disclaimers];
+    } else {
+      this.disclaimerGroup.disclaimers = [];
+    }
   }
 
   resetFilterHiringProcess() {
