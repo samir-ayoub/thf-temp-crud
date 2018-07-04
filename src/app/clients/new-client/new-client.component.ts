@@ -19,9 +19,9 @@ import { Customer } from './../../shared/customer';
 })
 export class NewClientComponent implements OnInit {
 
-  customer: Customer = new Customer();
   confirmDelete = false;
-  pageEditActions;
+  customer: Customer = new Customer();
+  pageEditActions: boolean;
 
   public readonly newUserActions: Array<ThfPageAction> = [
     { label: 'Adicionar Cliente', action: this.addClient.bind(this, this.customer), icon: 'thf-icon-plus' },
@@ -33,7 +33,6 @@ export class NewClientComponent implements OnInit {
     { label: 'Deletar', action: () => this.modalDeleteUser.open() },
     { label: 'Voltar', action: () => this.location.back() }
   ];
-
 
   public readonly modalPrimaryAction: ThfModalAction = {
     action: () => this.returnToHome(() => this.formModal.close()),
