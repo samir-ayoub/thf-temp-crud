@@ -17,7 +17,6 @@
             t-placeholder="Insira o Nome"
             t-required>
           </thf-input>
-      
           <thf-email
             class="thf-md-6"
             name="email"
@@ -27,7 +26,6 @@
             t-placeholder="Insira o Email"
             t-required>
           </thf-email>
-      
           <thf-input
             class="thf-md-6"
             name="phone"
@@ -38,8 +36,10 @@
             t-mask="(99) 99999?-9999"
             t-required>
           </thf-input>
+        </div>
 
-          <!-- <thf-datepicker
+        <div class="thf-row">
+          <thf-datepicker
             class="thf-md-6"
             name="birthday"
             [(ngModel)]="customer.birthday"
@@ -49,26 +49,34 @@
         </div>
 
         <div class="thf-row">
+          <thf-select
+            class="thf-md-6"
+            name="nationality"
+            [(ngModel)]="customer.nationality"
+            t-label="Nacionalidade"
+            [t-options]="nationalityOptions">
+          </thf-select>
+          <thf-select
+            class="thf-md-6"
+            name="status"
+            [(ngModel)]="customer.status"
+            t-label="Influência"
+            [t-options]="statusOptions">
+          </thf-select>
+        </div>
+
+        <div class="thf-row">
           <div class="thf-md-12">
             <thf-checkbox-group
-              name="checkboxGroup"
+              name="personality"
               [(ngModel)]="customer.personality"
-              t-label="Totvs Checkbox Group"
+              t-label="Características"
               [t-options]="personalityOptions">
             </thf-checkbox-group>
           </div>
         </div>
 
 
-
-          <thf-select
-            class="thf-md-6"
-            name="status"
-            [(ngModel)]="customer.nationality"
-            t-label="Nacionalidade"
-            [t-options]="nationalityOptions">
-          </thf-select> -->
-        </div>
       </form>
     </div>
   </div>
@@ -77,6 +85,7 @@
 <thf-modal #formModal
   t-title="Save successful"
   [t-primary-action]="modalPrimaryAction">
+
   <div class="thf-row">
     <thf-info
       class="thf-md-12"
@@ -101,15 +110,26 @@
       t-label="Data de nascimento"
       [t-value]="customer.birthday">
     </thf-info>
+  </div>
+  <hr>
+  <div class="thf-row">
+    <thf-info
+      class="thf-md-6"
+      t-label="Nacionalidade"
+      [t-value]="customer.nationality">
+    </thf-info>
     <thf-info
       class="thf-md-6"
       t-label="Influência"
       [t-value]="customer.status">
     </thf-info>
+  </div>
+  <hr>
+  <div class="thf-row">
     <thf-info
       class="thf-md-6"
-      t-label="Nacionalidade"
-      [t-value]="customer.nationality">
+      t-label="Características"
+      [t-value]="customer.personality | json">
     </thf-info>
   </div>
 </thf-modal>
