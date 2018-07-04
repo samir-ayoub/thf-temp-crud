@@ -19,6 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/@totvs/thf-theme/css/thf-theme-default.min.css",
         "styles.css"
       ],
       "scripts": [],

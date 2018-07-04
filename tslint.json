@@ -2,8 +2,11 @@
   "rulesDirectory": [
     "node_modules/codelyzer"
   ],
+  "extends": [
+    "tslint:recommended",
+    "tslint-sonarts"
+  ],
   "rules": {
-    "arrow-return-shorthand": true,
     "callable-types": true,
     "class-name": true,
     "comment-format": [
@@ -11,15 +14,11 @@
       "check-space"
     ],
     "curly": true,
-    "deprecation": {
-      "severity": "warn"
-    },
     "eofline": true,
     "forin": true,
     "import-blacklist": [
       true,
-      "rxjs",
-      "rxjs/Rx"
+      "rxjs"
     ],
     "import-spacing": true,
     "indent": [
@@ -35,19 +34,15 @@
     "member-access": false,
     "member-ordering": [
       true,
-      {
-        "order": [
-          "static-field",
-          "instance-field",
-          "static-method",
-          "instance-method"
-        ]
-      }
+      "static-before-instance",
+      "variables-before-functions"
     ],
     "no-arg": true,
     "no-bitwise": true,
+    "no-consecutive-blank-lines": true,
     "no-console": [
       true,
+      "log",
       "debug",
       "info",
       "time",
@@ -56,22 +51,18 @@
     ],
     "no-construct": true,
     "no-debugger": true,
-    "no-duplicate-super": true,
     "no-empty": false,
-    "no-empty-interface": true,
+    "no-empty-interface": false,
     "no-eval": true,
     "no-inferrable-types": [
-      true,
+      false,
       "ignore-params"
     ],
-    "no-misused-new": true,
-    "no-non-null-assertion": true,
     "no-shadowed-variable": true,
     "no-string-literal": false,
     "no-string-throw": true,
     "no-switch-case-fall-through": true,
     "no-trailing-whitespace": true,
-    "no-unnecessary-initializer": true,
     "no-unused-expression": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
@@ -107,6 +98,7 @@
         "variable-declaration": "nospace"
       }
     ],
+    "typeof-compare": true,
     "unified-signatures": true,
     "variable-name": false,
     "whitespace": [
@@ -120,24 +112,51 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
-      "camelCase"
+      "",
+      "kebab-case"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "",
       "kebab-case"
     ],
-    "no-output-on-prefix": true,
+    "no-unused-variable": true,
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
-    "no-input-rename": true,
-    "no-output-rename": true,
+    "no-input-rename": false,
+    "no-output-rename": false,
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
-    "directive-class-suffix": true
+    "directive-class-suffix": true,
+    "interface-name":false,
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "no-angle-bracket-type-assertion": false,
+    "trailing-comma": [
+      true,
+      {"multiline": "ignore", "singleline": "never"}
+    ],
+    "array-type": [true, "generic"],
+    "no-duplicate-string": false,
+    "ordered-imports": false,
+
+
+    // Validar Sonar
+    "no-identical-functions": false,
+    "object-literal-key-quotes":false,
+    "only-arrow-functions":false,
+    "object-literal-shorthand":false,
+    "ban-types":false,
+    "max-classes-per-file":false,
+    "prefer-for-of":false,
+    "cognitive-complexity":false,
+    "no-big-function":false,
+    "no-hardcoded-credentials":false,
+    "no-empty-destructuring":false,
+    "no-commented-code":false,
+    "no-duplicated-branches":false,
+    "max-union-size":false
   }
 }

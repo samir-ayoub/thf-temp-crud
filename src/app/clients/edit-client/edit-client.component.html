@@ -1,0 +1,68 @@
+<thf-page-default 
+  t-title="Editar Cliente"
+  [t-actions]="editUserActions"
+  [t-breadcrumb]="breadcrumb">
+
+  <div class="thf-row">
+    <div class="thf-lg-6 thf-offset-lg-3 thf-xl-6 thf-offset-xl-3">
+      <form #formUser="ngForm">
+        <div class="thf-row">
+          <thf-input
+            class="thf-md-12"
+            name="name"
+            [(ngModel)]="customer.name"
+            t-clean
+            t-label="Nome"
+            t-minlength="3"
+            t-required>
+          </thf-input>
+      
+          <thf-email
+            class="thf-md-12"
+            name="email"
+            [(ngModel)]="customer.email"
+            t-clean
+            t-label="Email"
+            t-required>
+          </thf-email>
+      
+          <thf-input
+            class="thf-md-12"
+            name="phone"
+            [(ngModel)]="customer.phone"
+            t-clean
+            t-label="Telefone"
+            t-mask="(99) 99999?-9999"
+            t-required>
+          </thf-input>
+
+          <thf-datepicker
+            class="thf-md-6"
+            name="birthday"
+            [(ngModel)]="customer.birthday"
+            t-label="Totvs Datepicker">
+          </thf-datepicker>
+
+          <thf-select
+            class="thf-md-12"
+            name="status"
+            [(ngModel)]="customer.status"
+            t-label="Influência"
+            [t-options]="statusOptions">
+          </thf-select>
+        </div>
+      </form>
+    </div>
+  </div>
+</thf-page-default>
+
+<thf-modal #modalDeleteUser
+  t-close
+  t-primary-label="Confirmar"
+  t-size="sm"
+  t-title="Tem certeza que deseja excluir?"
+  [t-primary-action]="confirmDeleteAction"
+  [t-secondary-action]="cancelDeleteAction">
+
+  <div class="thf-font-text-large thf-text-left">O usuário {{ customer.name }} não estará mais vínculado ao projeto.</div>
+</thf-modal>
