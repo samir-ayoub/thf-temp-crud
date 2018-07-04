@@ -9,7 +9,6 @@ import { ThfTableColumn } from '@totvs/thf-ui/components/thf-table';
 
 import { Customer } from './../../shared/customer';
 
-
 @Injectable()
 export class ClientsService {
 

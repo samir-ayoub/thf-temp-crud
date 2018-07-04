@@ -9,7 +9,6 @@ import { ClientsService } from './services/clients.service';
 import { Customer } from './../shared/customer';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'thf-clients',
   templateUrl: './clients.component.html',
   styleUrls: ['./clients.component.css']
@@ -80,11 +79,11 @@ export class ClientsComponent implements OnInit {
       }
     }
   }
- 
+
   filterAction() {
     this.populateDisclaimers([this.labelFilter]);
     this.filter();
-  } 
+  }
 
   getClients() {
     this.clientsService.getClients().subscribe(response => {
@@ -94,8 +93,7 @@ export class ClientsComponent implements OnInit {
   }
 
   includeFilter(item, filters) {
-    const result = filters.some(filter => String(item).toLocaleLowerCase().includes(filter.toLocaleLowerCase()));
-    return result;
+    return filters.some(filter => String(item).toLocaleLowerCase().includes(filter.toLocaleLowerCase()));
   }
 
   onChangeDisclaimer(disclaimers) {

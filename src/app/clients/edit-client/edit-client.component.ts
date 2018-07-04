@@ -13,7 +13,7 @@ import { ClientsService } from './../services/clients.service';
 import { Customer } from './../../shared/customer';
 
 @Component({
-  selector: 'app-edit-client',
+  selector: 'thf-edit-client',
   templateUrl: './edit-client.component.html',
   styleUrls: ['./edit-client.component.css']
 })
@@ -36,7 +36,7 @@ export class EditClientComponent implements OnInit {
     { label: 'Deletar', action: () => this.modalDeleteUser.open() },
     { label: 'Voltar', action: () => this.location.back() }
   ];
-  
+
   public readonly editUserBreadcrumb: ThfBreadcrumb = {
     items: [
       { label: 'Clientes', link: '/clients' },
@@ -98,19 +98,19 @@ export class EditClientComponent implements OnInit {
   ngOnInit() {
     this.getClient();
   }
-  
+
   addClient(customer: Customer) {
     this.clientsService.addClient(customer);
     this.formModal.open();
   }
-  
+
   deleteClient() {
     this.clientsService.deleteClient(this.customer.id).subscribe(data => {
       this.router.navigate(['/clients']);
       this.thfNotification.success('O usuário foi excluído.');
     });
   }
-  
+
   getClient() {
     const id = this.route.snapshot.paramMap.get('id');
     const result = this.clientsService.getClient(id);
@@ -118,18 +118,17 @@ export class EditClientComponent implements OnInit {
       this.pageEditActions = true;
       result.subscribe(params => {
         this.customer = params;
-        console.log(this.customer);
       });
     }
 
   }
-  
+
   onConfirmDelete() {
     this.confirmDelete = true;
     this.modalDeleteUser.close();
     this.deleteClient();
   }
-  
+
   returnToHome(param: Function) {
     this.clientsService.getClients();
     this.router.navigate(['/clients']);
